@@ -2,6 +2,7 @@
 A system for easy entrance ticket management
 
 E-ulaznice is an open source project designed to help with managing membership tickets for public objects.
+The project folders are named E-bazeni because that was the original name of the project.
 The project consists of a flutter application and a ASP.NET Core back-end application.
 I created it to help a local city pool manage its entry tickets. The application made that process easier and cheaper since they no longer have to create card tickets for every user. It can also detect duplicate entries, so the costumers cannot just pass the phone trough the fence to a friend once they entered.
 With little modification, this project can easily be used in most applications where there is a need for membership management(ex. gym memberships)
