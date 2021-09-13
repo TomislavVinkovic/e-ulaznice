@@ -6,7 +6,7 @@ The project consists of a flutter application and a ASP.NET Core back-end applic
 I created it to help a local city pool manage its entry tickets. The application made that process easier and cheaper since they no longer have to create card tickets for every user. It can also detect duplicate entries, so the costumers cannot just pass the phone trough the fence to a friend once they entered.
 With little modification, this project can easily be used in most applications where there is a need for membership management(ex. gym memberships)
 The project is not fully completed, however it is in a usable state.
-The comments are in Croatian, but I will update them to English in the near future
+The comments and the application are in Croatian, but I will update them to English over time.
 
 Some of the features included in this project are: 
 - JWT and Identity authentication and authorization
