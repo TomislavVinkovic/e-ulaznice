@@ -1,0 +1,75 @@
+﻿@model TipUlaznice
+
+@{
+    var title = "Kreiraj novi tip ulaznice";
+}
+
+@if (Model.Id != 0) {
+    title = $"Uredi {Model.Ime}";
+    <input hidden asp-for="Id" />
+}
+
+@{
+    ViewData["Title"] = title;
+}
+
+<form method="post" asp-action="Upsert">
+    <div class="p-3">
+
+        <div class="form-group row">
+            <h2 class="text-info pl-3">@title</h2>
+        </div>
+        <div class="row pt-4">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Ime"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Ime" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Ime"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="MaksimalanBrojKorisnika"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="MaksimalanBrojKorisnika" class="form-control" min="1"/>
+                        <span class="text-danger" asp-validation-for="MaksimalanBrojKorisnika"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Cijena"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Cijena" class="form-control" type="number"/>
+                        <span class="text-danger" asp-validation-for="Cijena"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+                        <div class="col">
+                            @if (Model.Id == 0) {
+                                <input type="submit" class="btn btn-default" value="Dodaj novi tip ulaznice" />
+                            }
+                            else {
+                                <input type="submit" class="btn btn-default w-100" value="Uredi" />
+                            }
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> &nbsp Povratak</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-4"></div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,43 @@
+﻿@using EBazeni.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+    var user = await (UserManager.FindByNameAsync(User.Identity.Name));
+}
+@*
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
+        <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+        <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+        @if (hasExternalLogins) {
+            <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+        }
+        <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+    </ul>
+*@
+
+<div class="row gutters">
+    <div class="col-12">
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="account-settings">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
+                        </div>
+                        <h5 class="user-name">@User.Identity.Name</h5>
+                        <h6 class="user-email">@user.Email</h6>
+                    </div>
+                </div>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item nav-pill"><a class="nav-link nav-pill-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profil</a></li>
+                    <li class="nav-item nav-pill" ><a class="nav-link nav-pill-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">E-mail adresa</a></li>
+                    <li class="nav-item nav-pill"><a class="nav-link nav-pill-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Lozinka</a></li>
+                    <li class="nav-item nav-pill"><a class="nav-link nav-pill-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Osobni podaci</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

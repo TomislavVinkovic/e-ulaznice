@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Početna";
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole(WC.AdminRole) || User.IsInRole(WC.ZaposlenikRole)) {
+<main role="main" class="container">
+    <div class="my-3 p-3">
+        <h6 class="pb-2 mb-0">Menadžment ulaznica</h6>
+        <a asp-controller="Zahtjev" asp-action="Index" class="custom-link border-0 sitebg">
+            <div class="media sitebg pt-3">
+                <i class="fas fa-ticket-alt fa-3x mr-4"></i>
+                <p class="media-body pb-3 mb-0 large lh-125 ">
+                    <strong class="d-block text-gray-dark">Zahtjevi za sezonske ulaznice</strong>
+                    Ovdje možete pregledati sve zahtjeve za sezonske ulaznice
+                </p>
+            </div>
+        </a>
+
+        <a asp-controller="TipUlaznice" asp-action="Index" class="custom-link border-0 sitebg">
+            <div class="media sitebg pt-3">
+                <i class="fas fa-edit fa-3x mr-4"></i>
+                <p class="media-body pb-3 mb-0 large ">
+                    <strong class="d-block text-gray-dark">Tipovi ulaznica</strong>
+                    Brisanje i dodavanje tipova ulaznica
+                </p>
+            </div>
+        </a>
+
+        <a asp-controller="Ulaznica" asp-action="Index" class="custom-link border-0 sitebg">
+            <div class="media sitebg pt-3">
+                <i class="fas fa-ticket-alt fa-3x mr-4"></i>
+                <p class="media-body pb-3 mb-0 large ">
+                    <strong class="d-block text-gray-dark">Pregled ulaznica</strong>
+                    Pregled svih ulaznica i njihovih korisnika
+                </p>
+            </div>
+        </a>
+
+    </div>
+
+    <div class="my-3 p-3 rounded box-shadow">
+        @if (User.Identity.IsAuthenticated && User.IsInRole(WC.AdminRole)) {
+            <h6 class=" pb-2 mb-0">Menadžment korisnika</h6>
+            <a asp-controller="UserManager" asp-action="Index" class="custom-link border-0 sitebg">
+                <div class="media sitebg pt-3">
+                    <i class="fas fa-user fa-3x mr-4"></i>
+                    <p class="media-body pb-3 mb-0 large ">
+                        <strong class="d-block text-gray-dark">Zaposlenici</strong>
+                        Upravljaj mojim zaposlenicima
+                    </p>
+                </div>
+            </a>
+        }
+    </div>
+
+</main>
+}
+

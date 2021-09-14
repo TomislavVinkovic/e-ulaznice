@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TipUlaznice>
+
+@{
+    ViewData["Title"] = "Tipovi sezonskih ulaznica";
+}
+
+<link rel="stylesheet" href="~/css/UserManagement.css" />
+@if (Model.Count() != 0) {
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Sezonske ulaznice</h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <a class="btn btn-default" asp-action="Upsert"><i class="fas fa-plus"></i> Dodaj novi tip sezonske ulaznice</a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table" style="color: lightgray;">
+                    <thead style="color: white;">
+                        <tr style="background: #050323;">
+                            <th style="border: none" colspan="2">Naziv</th>
+                            <th style="border: none; text-align: center" colspan="1">Maksimalan broj korisnika</th>
+                            <th style="border: none" colspan="1">Cijena</th>
+                            <th style="border: none" colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var obj in Model) {
+                            <tr>
+                                <td style="border: none" colspan="2">@obj.Ime</td>
+                                <td style="border: none; text-align: center" colspan="1">@obj.MaksimalanBrojKorisnika.ToString()</td>
+                                <td style="border: none" colspan="1">@obj.Cijena.ToString() kn</td>
+                                <td colspan="2" style="border: none; text-align: right">
+                                    <a asp-action="Upsert" asp-route-Id="@obj.Id" class="edit"><i class="fas fa-edit custom-icon-edit" ></i></a>
+                                    <a asp-action="Delete" asp-route-Id="@obj.Id" class="delete"><i class="fas fa-trash custom-icon-trash"></i></a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    }
+    else {
+        <div class="row">
+            <div class="col-12">
+                <a class="btn btn-default" asp-action="Upsert"><i class="fas fa-plus"></i> Dodaj novi tip sezonske ulaznice</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 pt-3">
+                <p style="color: white; font-size: 18px;">Nemate dodan niti jedan zahtjev za sezonskom ulaznicom!</p>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    }

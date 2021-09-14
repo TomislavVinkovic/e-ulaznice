@@ -1,0 +1,74 @@
+﻿@model EBazeni.Models.ViewModels.ZaposlenikVM
+
+@{
+    ViewData["Title"] = "Zaposlenici";
+}
+
+<link rel="stylesheet" href="~/css/UserManagement.css" />
+
+@if (Model.ApplicationUsers.Count() != 0) {
+<div class="container-xl">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Zaposlenici</h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="btn btn-default" asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-plus"></i> Dodaj novog zaposlenika</a>
+                        <a class="btn btn-secondary" asp-controller="TipZaposlenika" asp-action="Index"><i class="fas fa-user-tag"></i> Tipovi zaposlenika</a>
+                    </div>
+                </div>
+            </div>
+            <table class="table" style="color: lightgray;">
+                <thead style="color: white;">
+                    <tr style="background: #050323;">
+                        <th style="border: none">Korisničko ime</th>
+                        <th style="border: none">E-mail adresa</th>
+                        <th style="border: none">Ime</th>
+                        <th style="border: none">Prezime</th>
+                        <th style="border: none">Datum rođenja</th>
+                        <th style="border: none">Tip zaposlenika</th>
+                        <th style="border: none"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model.ApplicationUsers.Zip(Model.Zaposlenici, (ap, z) => new { ApplicationUser = ap, Zaposlenik = z })) {
+                        <tr>
+                            <td style="border: none">@obj.ApplicationUser.UserName</td>
+                            <td style="border: none">@obj.ApplicationUser.Email</td>
+                            <td style="border: none">@obj.ApplicationUser.Ime</td>
+                            <td style="border: none">@obj.ApplicationUser.Prezime</td>
+                            <td style="border: none">@obj.ApplicationUser.DatumRodenja.ToShortDateString()</td>
+                            <td style="border: none">@obj.Zaposlenik.TipZaposlenika.Naziv</td>
+                            <td colspan="2" style="border: none">
+                                <a asp-area="Identity" asp-page="/Account/Manage/EditUserAdmin" asp-route-Id="@obj.ApplicationUser.Id" class="edit"><i class="fas fa-edit custom-icon-edit"></i></a>
+                                <a asp-area="Identity" asp-page="/Account/Manage/DisableUserAdmin" asp-route-Id="@obj.ApplicationUser.Id" class="delete"><i class="fas fa-trash custom-icon-trash"></i></a>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+}
+else { 
+<div class="row">
+    <div class="col-12">
+        <a class="btn btn-default" asp-area="Identity" asp-page="/Account/Register"><i class="fas fa-plus"></i> Dodaj novog zaposlenika</a>
+        <a class="btn btn-secondary" asp-controller="TipZaposlenika" asp-action="Index"><i class="fas fa-user-tag"></i> Tipovi zaposlenika</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 pt-3">
+        <p style="color: white; font-size: 18px;">Nemate dodan niti jedan zahtjev za sezonskom ulaznicom!</p>
+    </div>
+    <div class="col-4"></div>
+</div>
+}
+

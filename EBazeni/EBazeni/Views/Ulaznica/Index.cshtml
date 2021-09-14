@@ -1,0 +1,57 @@
+﻿@model IEnumerable<KorisnikUsesUlaznica>
+
+@{
+    ViewData["Title"] = "Popis svih izdanih ulaznica";
+}
+
+<link rel="stylesheet" href="~/css/UserManagement.css" />
+@if (Model.Count() != 0) {
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Sezonske ulaznice</h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <a class="btn btn-default" asp-action="Upsert"><i class="fas fa-plus"></i> Dodaj novu ulaznicu</a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table" style="color: lightgray;">
+                    <thead style="color: white;">
+                        <tr style="background: #050323;">
+                            <th style="border: none; text-align: center;" colspan="3">Jedinstveni relacijski broj</th>
+                            <th style="border: none; text-align: center">Broj Ulaznice</th>
+                            <th style="border: none; text-align: center;" colspan="4">Korisnik</th>
+                            <th style="border: none; text-align: center" >Istek valjanosti ulaznice</th>
+                            <th style="border: none;text-align: center;" colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var obj in Model) {
+                            <tr>
+                                <td style="border: none; text-align: center;" colspan="3">@obj.Key</td>
+                                <td style="border: none; text-align: center">@obj.Ulaznica.BrojUlaznice</td>
+                                <td style="border: none; text-align: center;" colspan="4">@obj.ApplicationUser.Ime @obj.ApplicationUser.Prezime</td>
+                                <td style="border: none; text-align: center" colspan="2">@obj.Ulaznica.EndDate.ToLocalTime().ToString("dd.MM.yyyy")</td>
+                                <td colspan="2" style="border: none;">
+                                    <a asp-action="Upsert" asp-route-Id="@obj.Ulaznica.BrojUlaznice" class="edit"><i class="fas fa-edit custom-icon-edit"></i></a>
+                                    <a asp-action="Delete" asp-route-Id="@obj.Ulaznica.BrojUlaznice" class="delete"><i class="fas fa-trash custom-icon-trash"></i></a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+}
+else {
+    <p style="color: white; font-size: 18px;
+">Nemate dodan niti jedan zahtjev za sezonskom ulaznicom!</p>
+}
+
+
+

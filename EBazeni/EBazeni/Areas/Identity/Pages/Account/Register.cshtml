@@ -1,0 +1,205 @@
+﻿@page
+@using EBazeni
+@model RegisterModel
+@{
+    ViewData["Title"] = "Registracija novog korisnika";
+}
+
+<link rel="stylesheet" href="~/css/Login.css" />
+
+<div class="row">
+    <div class="col-12">
+        @*
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Username"></label>
+                <input asp-for="Input.Username" class="form-control" />
+                <span asp-validation-for="Input.Username" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Input.OIB"></label>
+                <input asp-for="Input.OIB" class="form-control" />
+                <span asp-validation-for="Input.OIB" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.DatumRodenja"></label>
+                <input asp-for="Input.DatumRodenja" class="form-control" />
+                <span asp-validation-for="Input.DatumRodenja" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Ime"></label>
+                <input asp-for="Input.Ime" class="form-control" />
+                <span asp-validation-for="Input.Ime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Prezime"></label>
+                <input asp-for="Input.Prezime" class="form-control" />
+                <span asp-validation-for="Input.Prezime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Prebivaliste"></label>
+                <input asp-for="Input.Prebivaliste" class="form-control" />
+                <span asp-validation-for="Input.Prebivaliste" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Boraviste"></label>
+                <input asp-for="Input.Boraviste" class="form-control" />
+                <span asp-validation-for="Input.Boraviste" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.TipZaposlenika"></label>
+                <select asp-for="Input.TipZaposlenika" asp-items="Model.TipoviZaposlenika" class="form-control">
+                    <option selected disabled> --Izaberi tip zaposlenika--</option>
+                </select>
+            </div>
+
+            @if (User.IsInRole(WC.AdminRole)) {
+                <div class="form-group">
+                    <label asp-for="Input.IsAdmin"></label>
+                    <input asp-for="Input.IsAdmin" class="form-check-inline" />
+                    <span asp-validation-for="Input.IsAdmin" class="text-danger"></span>
+                </div>
+            }
+
+
+
+            <button type="submit" class="btn btn-default">Register</button>
+        </form>
+        *@
+        <div class="wrapper">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <!-- Icon -->
+                <div class="first">
+                    <img src="~/img/static/user.png" id="icon" alt="User Icon" />
+                </div>
+
+                <!-- Login Form -->
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Username"></label>
+                        <input asp-for="Input.Username" class="form-control" />
+                        <span asp-validation-for="Input.Username" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Input.OIB"></label>
+                        <input asp-for="Input.OIB" class="form-control" />
+                        <span asp-validation-for="Input.OIB" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.DatumRodenja"></label>
+                        <input asp-for="Input.DatumRodenja" class="form-control" />
+                        <span asp-validation-for="Input.DatumRodenja" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Ime"></label>
+                        <input asp-for="Input.Ime" class="form-control" />
+                        <span asp-validation-for="Input.Ime" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Prezime"></label>
+                        <input asp-for="Input.Prezime" class="form-control" />
+                        <span asp-validation-for="Input.Prezime" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Prebivaliste"></label>
+                        <input asp-for="Input.Prebivaliste" class="form-control" />
+                        <span asp-validation-for="Input.Prebivaliste" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Boraviste"></label>
+                        <input asp-for="Input.Boraviste" class="form-control" />
+                        <span asp-validation-for="Input.Boraviste" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.ConfirmPassword"></label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <label asp-for="Input.TipZaposlenika"></label>
+                        <center>
+                            <select asp-for="Input.TipZaposlenika" asp-items="Model.TipoviZaposlenika" class="form-control">
+                                <option selected disabled> --Izaberi tip zaposlenika--</option>
+                            </select>
+                        </center>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <label asp-for="Input.IsAdmin"></label>
+                        <input asp-for="Input.IsAdmin" class="form-check-inline" />
+                        <span asp-validation-for="Input.IsAdmin" class="text-danger"></span>
+                    </div>
+
+
+
+
+                    <button type="submit" class="btn btn-default">Registriraj novog korisnika</button>
+                </form>
+
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

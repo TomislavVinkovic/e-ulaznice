@@ -1,0 +1,158 @@
+﻿@model EBazeni.Models.ViewModels.UlaznicaVM
+
+@{
+    var title = "";
+}
+
+@if (Model.Zahtjev != null) {
+    title = $"Kreiraj novu ulaznicu";
+}
+else {
+    title = $"Uredi ulaznicu";
+    <input hidden asp-for="KorisnikUsesUlaznica.Ulaznica.BrojUlaznice" />
+}
+
+
+@if (Model.ApplicationUsers != null) {
+    <form method="post" asp-action="Upsert">
+
+        <div class="p-3">
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="KorisnikUsesUlaznica.Ulaznica.TipUlaznice"></label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="KorisnikUsesUlaznica.Ulaznica.TipUlazniceId" asp-items="@Model.TipoviUlaznica" class="form-control">
+                        <option selected disabled> -- Odaberi tip ulaznice -- </option>
+                    </select>
+                    <span class="text-danger" asp-validation-for="KorisnikUsesUlaznica.Ulaznica.TipUlaznice"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label> Korisnik</label>
+                </div>
+                <div class="col-8">
+                    <select asp-for="KorisnikUsesUlaznica.ApplicationUserId" id="korisnici" asp-items="@Model.ApplicationUsers" class="form-control">
+                        <option selected disabled> -- Odaberi korisnika -- </option>
+                    </select>
+                    <span class="text-danger" asp-validation-for="KorisnikUsesUlaznica.ApplicationUser"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="KorisnikUsesUlaznica.Ulaznica.EndDate"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="KorisnikUsesUlaznica.Ulaznica.EndDate" class="form-control" />
+                    <span class="text-danger" asp-validation-for="KorisnikUsesUlaznica.Ulaznica.EndDate"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-8 offset-4 row">
+                    <div class="col">
+                        <input type="submit" class="btn btn-default w-100" value="Dodaj novu ulaznicu" />
+                    </div>
+                    <div class="col">
+                        <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> &nbsp Povratak</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+}
+
+else {
+    <form method="post" asp-action="Upsert">
+        @if (Model.Zahtjev != null) {
+            <input hidden asp-for="KorisnikUsesUlaznica.ApplicationUserId" />
+        }
+        <div class="p-3">
+
+            <div class="form-group row">
+                <h2 class="text-info pl-3">@title</h2>
+            </div>
+            <div class="row pt-4">
+                <div class="col-8">
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="KorisnikUsesUlaznica.Ulaznica.TipUlaznice"></label>
+                        </div>
+                        <div class="col-8">
+                            <select asp-for="KorisnikUsesUlaznica.Ulaznica.TipUlazniceId" asp-items="@Model.TipoviUlaznica" class="form-control"></select>
+                            <span class="text-danger" asp-validation-for="KorisnikUsesUlaznica.Ulaznica.TipUlaznice"></span>
+                        </div>
+                    </div>
+                    @*
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Zahtjev.TipUlazniceForZahtjev.MaksimalanBrojKorisnika"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Zahtjev.TipUlazniceForZahtjev.MaksimalanBrojKorisnika" disabled class="form-control" min="1" />
+                                <span class="text-danger" asp-validation-for="Zahtjev.TipUlazniceForZahtjev.MaksimalanBrojKorisnika"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Zahtjev.TipUlazniceForZahtjev.Cijena"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Zahtjev.TipUlazniceForZahtjev.Cijena" disabled class="form-control" type="number" />
+                                <span class="text-danger" asp-validation-for="Zahtjev.TipUlazniceForZahtjev.Cijena"></span>
+                            </div>
+                        </div>
+                    *@
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="KorisnikUsesUlaznica.Ulaznica.EndDate"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="KorisnikUsesUlaznica.Ulaznica.EndDate" class="form-control" />
+                            <span class="text-danger" asp-validation-for="KorisnikUsesUlaznica.Ulaznica.EndDate"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-8 offset-4 row">
+                            <div class="col">
+                                @if (Model.Zahtjev != null) {
+                                    <input type="submit" class="btn btn-default" value="Dodaj novu ulaznicu" />
+                                }
+                                else {
+                                    <input type="submit" class="btn btn-default w-100" value="Uredi ulaznicu" />
+                                }
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> &nbsp Povratak</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </form>
+}
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="select2.min.js"></script>
+    <script>
+    $("#korisnici").select2( {
+        placeholder: " -- Odaberi korisnika -- ",
+        allowClear: true
+    });
+    
+    </script>
+}
