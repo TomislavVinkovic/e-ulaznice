@@ -20,6 +20,7 @@ Some of the features included in this project are:
 # How to setup the project?
 - # Flutter app
   - You need to configure the _**apiURL**_ variable inside the _apiservice.dart_ file located in _lib/services_. That variable is the base url of your server(ex www.website.com)
+  - Add a logo file named _templogo.png_ in _assets/images_
 - # Asp.NET CORE Web application:
   - # appsettings.json
     - The secret variable inside JWTConfig must be any random 32 character string using alphabetical characters. This string is very important as it encrypts all your jwt tokens.
